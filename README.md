@@ -27,7 +27,8 @@ npm install
 3. **Run the application:**
 npm run android
 
-This will start the Metro Bundler. You can then launch the app on your preferred device or simulator.
+> [!NOTE]
+> This will start the Metro Bundler. You can then launch the app on your preferred device or simulator.
 
 ## Implementation Details
 - **Firebase Integration:** Firebase authentication (`firebase/auth`) and Firebase database (`firebase/database`) are used for user authentication and data storage.
