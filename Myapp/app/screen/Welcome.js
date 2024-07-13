@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 function Item({ item }) {
     return (
@@ -36,7 +37,15 @@ function Item({ item }) {
           <View style={styles.headerContainer}>
         <Text style={styles.title}>User List</Text>
         <TouchableOpacity style={styles.profileBtn} onPress={() => navigation.navigate('Profile')}>
-          <Text >Profile</Text>
+          <Text>Profile</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.battery} onPress={() => navigation.navigate('BatteryLevel')}>
+        <Icon name="battery-3" size={20} color="green" />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.micbtn} onPress={() => navigation.navigate('VoiceToText')}>
+        <Icon name="microphone" size={20} color="#ffcc00" />
         </TouchableOpacity>
         
       </View>
@@ -72,7 +81,7 @@ function Item({ item }) {
       borderRadius:5
     },
     title:{
-        fontSize: 24,
+        fontSize: 20,
         textAlign:'left',
         marginTop: 20,
         marginBottom: 20,
@@ -92,4 +101,16 @@ function Item({ item }) {
       bottom:25,
       marginLeft:180,
     },
+    micbtn:{
+      position:'absolute',
+      left:80,
+      bottom:25,
+      marginLeft:180,
+    },
+    battery:{
+      position:'absolute',
+      left:130,
+      bottom:25,
+      marginLeft:180,
+    }
   });

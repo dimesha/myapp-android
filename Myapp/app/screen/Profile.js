@@ -23,7 +23,7 @@ export default function Profile({ navigation }) {
       
       <TextInput style={styles.input}>{auth.currentUser.email}</TextInput>
       
-      <TextInput style={styles.input}>{auth.currentUser.uid}</TextInput>
+      <TextInput style={styles.input}>dimesha</TextInput>
        
     
       <TouchableOpacity style={styles.button} onPress={signOutUser}>
