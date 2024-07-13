@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ActivityIndicator } from 'react-native';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { FIREBASE_AUTH } from '../../FirebaseConfig';
 
 export default function SignUp({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
+
+  const signUp = async () => {
+    setLoading(true);
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(response);
+      alert('Check your email!');
+      navigation.navigate('Welcome');
+    } catch (error) {
+      console.log(error);
+      alert('Registration process faailed :' + error);
+    }finally{
+      setLoading(false);
+    }
+  }
    
     return (
         <View style={styles.container}>
@@ -51,10 +70,13 @@ export default function SignUp({ navigation }) {
         <Text style={styles.requirement}>✓ One number</Text>
         <Text style={styles.requirement}>✓ 8 characters minimum</Text>
       </View>
-      
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile')}>
+
+      { loading ? <ActivityIndicator size={'large'} color={'#000fe'}/> : <> 
+      <TouchableOpacity style={styles.button} onPress={signUp}>
         <Text style={styles.buttonText} >Sign Up</Text>
       </TouchableOpacity>
+      </>}
+    
 
       <View style={styles.signinContainer}>
         <Text style={styles.signinText}>Have an account?</Text>

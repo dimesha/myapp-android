@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { FIREBASE_AUTH } from '../../FirebaseConfig';
+
 
 export default function Profile({ navigation }) {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const auth = FIREBASE_AUTH;
+    const signOutUser = async () => {
+      try {
+          await auth.signOut();
+          navigation.navigate('Login');
+      } catch (e) {
+          console.log(e);
+      }
+  }
+    
 
     return (
         <View style={styles.container}>
       <Text style={styles.title}>My Profile</Text>
       
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#8e8e93"
-        value={email}
-        onChangeText={setEmail}
-      />
+      <TextInput style={styles.input}>{auth.currentUser.email}</TextInput>
       
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        placeholderTextColor="#8e8e93"
-        value={name}
-        onChangeText={setName}
-        
-      />
+      <TextInput style={styles.input}>{auth.currentUser.uid}</TextInput>
+       
     
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity style={styles.button} onPress={signOutUser}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
     </View>

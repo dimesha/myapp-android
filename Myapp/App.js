@@ -8,6 +8,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
+
+
 export default function App() {
   return (
     <NavigationContainer>

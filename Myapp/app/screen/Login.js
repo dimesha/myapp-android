@@ -1,9 +1,32 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import {FIREBASE_AUTH} from '../../FirebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const auth = FIREBASE_AUTH;
+
+    const signin = async () => {
+      setLoading(true);
+      try {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+        console.log(response);
+        setEmail('');
+        setPassword('');
+        navigation.navigate('Welcome');
+        
+      } catch (error) {
+        console.log(error);
+        alert('sign in failed :' + error);
+      }finally{
+        setLoading(false);
+      }
+    }
+
 
     return (
         <View style={styles.container}>
@@ -29,10 +52,13 @@ export default function Login({ navigation }) {
       <TouchableOpacity style={styles.forgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
       </TouchableOpacity>
-      
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Welcome')}>
+      { loading ? <ActivityIndicator size={'large'} color={'#000fe'}/> : <> 
+      <TouchableOpacity style={styles.button} onPress={signin}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
+
+      </>}
+      
 
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Don't have an account? </Text>
@@ -40,6 +66,7 @@ export default function Login({ navigation }) {
           <Text style={styles.signupLink}>Sign Up</Text>
         </TouchableOpacity>
       </View>
+    
     </View>
     )
   
