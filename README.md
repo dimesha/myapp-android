@@ -43,16 +43,3 @@ This will start the Metro Bundler. You can then launch the app on your preferred
 - **Native Module for Battery Level:** Implemented native code (Swift/Java/Kotlin) to display device battery level on the profile screen.
 
 - **Next.js Landing Page:** Created a simple landing page using Next.js to provide information about the application and its features.
-
-## Folder Structure
-
-├── android/           # Android native files
-├── ios/               # iOS native files
-├── src/               # Source code
-│   ├── components/    # Reusable components
-│   ├── screens/       # Application screens
-│   ├── redux/         # Redux store, actions, and reducers
-│   ├── services/      # Firebase and API services
-│   ├── utils/         # Utility functions
-│   └── App.js         # Main entry point
-└── README.md          # Project overview and instructions
