@@ -33,7 +33,7 @@ npm run android
 ## Implementation Details
 - **Firebase Integration:** Firebase authentication (`firebase/auth`) and Firebase database (`firebase/database`) are used for user authentication and data storage.
 
-- **ThronesAPI Integration:** Utilized to fetch and display characters in the app. Design follows specifications provided in the Figma link.
+- **ThronesAPI Integration:** Utilized to fetch and display characters in the app.
 
 - **Redux:** Implemented for state management across the application, ensuring a centralized data flow.
 
